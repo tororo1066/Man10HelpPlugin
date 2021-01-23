@@ -1,0 +1,21 @@
+commands:
+  page1:
+    bal: "/bal 値段を確認します"
+    mbal: "/mbal 銀行の値段を確認します /mbal (d or w) (金額) 引き出し(w)、預ける(d)、ことができます"
+    warp: "/warp (場所) 指定した場所に3秒後にテレポートします"
+    server: "/server (サーバー) 指定したサーバーにテレポートします"
+    ar: "/ar (check) (ランク名) 次のランクの条件の確認ができます"
+    mmail: "/mmail メールを表示します 詳しくは/mmail help"
+
+show:
+  man10:
+  slum:
+  gacha:
+  fishing:
+  tomato:
+  eco:
+  oceano:
+  ouhuu:
+  tutorial:
+
+

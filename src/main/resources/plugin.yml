@@ -1,0 +1,6 @@
+name: Man10HelpPlugin
+version: @version@
+main: man10helpplugin.mhelp.mhelp
+api-version: 1.16
+commands:
+  mhelp:
