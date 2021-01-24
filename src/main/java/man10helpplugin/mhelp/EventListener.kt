@@ -1,5 +1,6 @@
 package man10helpplugin.mhelp
 
+import man10helpplugin.mhelp.mhelp.Companion.plugin
 import man10helpplugin.mhelp.mhelp.Companion.shownow
 import man10helpplugin.mhelp.util.showhelp
 import org.bukkit.GameMode
@@ -11,17 +12,13 @@ import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
 
 object EventListener : Listener {
-    @EventHandler
-    fun join(e : PlayerJoinEvent){
-        if (!e.player.hasPlayedBefore())showhelp(e.player)
-    }
 
     @EventHandler
     fun leave(e : PlayerQuitEvent){
         if (shownow[e.player] == true) {
             shownow[e.player] = false
             e.player.gameMode = GameMode.SURVIVAL
-            e.player.teleport(Location(e.player.world,-311.0,63.0,-332.0))
+            plugin.config.getLocation("show.last.loc")?.let { e.player.teleport(it) }
         }
     }
 
