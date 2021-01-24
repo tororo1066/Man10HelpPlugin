@@ -10,7 +10,7 @@ commands:
 
 
 
-show:
+show1:
   first:  #最初の文字(String)
     txt: "test"
     subtxt: "ttest"
@@ -31,5 +31,28 @@ show:
     txt:
     subtxt:
     loc:
+
+show2:
+  first:  #最初の文字(String)
+    txt: "test"
+    subtxt: "ttest"
+    loc:
+  kaisuu: 3 #紹介回数(Int)
+  title: 3 #titleの表示時間(Int、数字/tick)
+  fadein: 10 #fadeinの時間(Int、数字/tick)
+  fadeout: 10 #fadeoutの時間(Int、数字/tick)
+  last: #最後の文字(String)
+    txt: "tst"
+    subtxt: "ts"
+    loc:
+  0:
+    txt: "txt"
+    subtxt: "subtxt"
+    loc:
+  1:
+    txt:
+    subtxt:
+    loc:
+
 
 
