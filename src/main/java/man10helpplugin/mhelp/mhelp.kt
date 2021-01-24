@@ -43,7 +43,7 @@ class mhelp : JavaPlugin(),CommandExecutor{
                 sender.sendMessage("§a/mhelp show ムービーが見れます")
                 if (sender.hasPermission("admin")){
                     sender.sendMessage("§a/mhelp show (Player) ムービーを見せることができます")
-                    sender.sendMessage("§a/mhelp set (Int(0~)) (title) (subtitle) (point) ムービーの場所、")
+                    sender.sendMessage("§a/mhelp set (順番(0~)) (title) (subtitle) (番号) ムービーの場所、")
                     sender.sendMessage("§aタイトル、順番を指定できます")
                     sender.sendMessage("§a/mhelp reload configをリロードします(誰かがムービーを見てるとできません)")
                     sender.sendMessage("§a/mhelp showsetting(ss) ムービーの設定ができます")
@@ -136,12 +136,12 @@ class mhelp : JavaPlugin(),CommandExecutor{
                     }
                     if (args.size == 1){
                         sender.sendMessage("§a=========================Man10HelpPlugin=========================")
-                        sender.sendMessage("§akaisuu (Int) (point) タイトルの表示回数を指定します")
-                        sender.sendMessage("§atitle (Int) (point) タイトルの表示時間をtick単位で指定します")
-                        sender.sendMessage("§afadein (Int) (point) タイトルのフェードインの時間をtick単位で指定します")
-                        sender.sendMessage("§afadeout (Int) (point) タイトルのフェードアウトの時間をtick単位で指定します")
-                        sender.sendMessage("§afirst (title) (subtitle) (point) 最初のタイトルを設定します")
-                        sender.sendMessage("§alast (title) (subtitle) (point) 最後のタイトルを設定します")
+                        sender.sendMessage("§akaisuu (回数) (番号) タイトルの表示回数を指定します")
+                        sender.sendMessage("§atitle (tick数) (番号) タイトルの表示時間をtick単位で指定します")
+                        sender.sendMessage("§afadein (tick数) (番号) タイトルのフェードインの時間をtick単位で指定します")
+                        sender.sendMessage("§afadeout (tick数) (番号) タイトルのフェードアウトの時間をtick単位で指定します")
+                        sender.sendMessage("§afirst (title) (subtitle) (番号) 最初のタイトルを設定します")
+                        sender.sendMessage("§alast (title) (subtitle) (番号) 最後のタイトルを設定します")
                         sender.sendMessage("§a=========================Man10HelpPlugin=========================")
                     }else {
                         when (args[1]) {
