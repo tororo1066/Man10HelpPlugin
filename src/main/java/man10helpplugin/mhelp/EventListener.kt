@@ -1,6 +1,7 @@
 package man10helpplugin.mhelp
 
 import man10helpplugin.mhelp.mhelp.Companion.plugin
+import man10helpplugin.mhelp.mhelp.Companion.prefix
 import man10helpplugin.mhelp.mhelp.Companion.shownow
 import man10helpplugin.mhelp.util.showhelp
 import org.bukkit.GameMode
@@ -33,6 +34,7 @@ object EventListener : Listener {
     fun chat(e : AsyncPlayerChatEvent){
         if (e.message == "skip"){
             shownow[e.player] = false
+            e.player.sendMessage(prefix + "ムービーをスキップしました")
             e.isCancelled = true
         }
     }

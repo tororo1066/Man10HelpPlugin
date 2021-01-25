@@ -2,17 +2,12 @@ package man10helpplugin.mhelp
 
 import man10helpplugin.mhelp.util.changeint
 import man10helpplugin.mhelp.util.firsthelp
-import man10helpplugin.mhelp.util.firsthelp2
-import man10helpplugin.mhelp.util.firsthelp3
-import man10helpplugin.mhelp.util.showhelp
 import org.bukkit.Bukkit
-import org.bukkit.GameMode
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
-import java.lang.NumberFormatException
 
 class mhelp : JavaPlugin(),CommandExecutor{
 
@@ -70,38 +65,12 @@ class mhelp : JavaPlugin(),CommandExecutor{
                             sender.sendMessage(prefix + "そのプレイヤーはオフラインです！")
                             return true
                         }
-                        when(changeint(args[2],sender)) {
-                            1 -> {
-                                firsthelp(p)
-                                return true
-                            }
-                            2 -> {
-                                firsthelp2(p)
-                                return true
-                            }
-                            3 ->{
-                                firsthelp3(p)
-                                return true
-                            }
-                        }
-
+                        firsthelp(p, changeint(args[2],sender))
                         return true
                     }else{
                         if (args.size != 2)return true
-                        when(changeint(args[1],sender)){
-                            1->{
-                                firsthelp(sender)
-                                return true
-                            }
-                            2->{
-                                firsthelp2(sender)
-                                return true
-                            }
-                            3->{
-                                firsthelp3(sender)
-                                return true
-                            }
-                        }
+                        firsthelp(sender, changeint(args[1],sender))
+                        return true
                     }
 
 

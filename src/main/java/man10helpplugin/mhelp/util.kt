@@ -11,109 +11,47 @@ import org.bukkit.scheduler.BukkitRunnable
 
 object util {
 
-    fun changeint(s : String, p : Player): Int {
+    fun changeint(s: String, p: Player): Int {
         var i = 0
         try {
             i = s.toInt()
-        }catch (e : NumberFormatException){
+        } catch (e: NumberFormatException) {
             p.sendMessage(prefix + "数字を使用してください！")
         }
         return i
     }
 
-    fun firsthelp(p : Player){
-        if (shownow[p] == true)return
+    fun firsthelp(p: Player, i: Int) {
+        if (shownow[p] == true) return
         shownow[p] = true
-        shownumber[p] = plugin.config.getInt("show1.kaisuu")
+        shownumber[p] = plugin.config.getInt("show$i.kaisuu")
         p.gameMode = GameMode.SPECTATOR
-        plugin.config.getLocation("show1.first.loc")?.let { p.teleport(it) }
-        p.sendTitle(plugin.config.getString("show1.first.txt"),plugin.config.getString("show1.first.subtxt"),plugin.config.getInt("show1.fadein"),plugin.config.getInt("show1.title"),plugin.config.getInt("show1.fadeout"))
-        showhelp(p)
+        plugin.config.getLocation("show$i.first.loc")?.let { p.teleport(it) }
+        p.sendTitle(plugin.config.getString("show$i.first.txt"), plugin.config.getString("show$i.first.subtxt"), plugin.config.getInt("show$i.fadein"), plugin.config.getInt("show$i.title"), plugin.config.getInt("show$.fadeout"))
+        showhelp(p,i)
     }
 
-    fun firsthelp2(p : Player){
-        if (shownow[p] == true)return
-        shownow[p] = true
-        shownumber[p] = plugin.config.getInt("show2.kaisuu")
-        p.gameMode = GameMode.SPECTATOR
-        plugin.config.getLocation("show2.first.loc")?.let { p.teleport(it) }
-        p.sendTitle(plugin.config.getString("show2.first.txt"),plugin.config.getString("show2.first.subtxt"),plugin.config.getInt("show2.fadein"),plugin.config.getInt("show2.title"),plugin.config.getInt("show2.fadeout"))
-        showhelp2(p)
-    }
 
-    fun firsthelp3(p : Player){
-        if (shownow[p] == true)return
-        shownow[p] = true
-        shownumber[p] = plugin.config.getInt("show3.kaisuu")
-        p.gameMode = GameMode.SPECTATOR
-        plugin.config.getLocation("show3.first.loc")?.let { p.teleport(it) }
-        p.sendTitle(plugin.config.getString("show3.first.txt"),plugin.config.getString("show3.first.subtxt"),plugin.config.getInt("show3.fadein"),plugin.config.getInt("show3.title"),plugin.config.getInt("show3.fadeout"))
-        showhelp3(p)
-    }
-
-    fun showhelp(p: Player){
+    fun showhelp(p: Player, i : Int) {
 
 
-        object : BukkitRunnable(){
+        object : BukkitRunnable() {
             override fun run() {
 
-                plugin.config.getLocation("show1.${plugin.config.getInt("show1.kaisuu") - shownumber[p]!!}.loc")?.let { p.teleport(it) }
-                p.sendTitle(plugin.config.getString("show1.${plugin.config.getInt("show1.kaisuu") - shownumber[p]!!}.txt"), plugin.config.getString("show1.${plugin.config.getInt("show1.kaisuu") - shownumber[p]!!}.subtxt"), plugin.config.getInt("show1.fadein"), plugin.config.getInt("show1.title"), plugin.config.getInt("show1.fadeout"))
+                plugin.config.getLocation("show$i.${plugin.config.getInt("show$i.kaisuu") - shownumber[p]!!}.loc")?.let { p.teleport(it) }
+                p.sendTitle(plugin.config.getString("show$i.${plugin.config.getInt("show$i.kaisuu") - shownumber[p]!!}.txt"), plugin.config.getString("show$i.${plugin.config.getInt("show$i.kaisuu") - shownumber[p]!!}.subtxt"), plugin.config.getInt("show$i.fadein"), plugin.config.getInt("show$i.title"), plugin.config.getInt("show$i.fadeout"))
                 shownumber[p] = shownumber[p]?.minus(1)!!
-                if (shownumber[p] == -1 || shownow[p] == false){
-                    plugin.config.getLocation("show1.last.loc")?.let { p.teleport(it) }
-                    p.sendTitle(plugin.config.getString("show1.last.txt"), plugin.config.getString("show1.last.subtxt"),plugin.config.getInt("show1.fadein"),plugin.config.getInt("show1.title"),plugin.config.getInt("show1.fadeout"))
+                if (shownumber[p] == -1 || shownow[p] == false) {
+                    plugin.config.getLocation("show$i.last.loc")?.let { p.teleport(it) }
+                    p.sendTitle(plugin.config.getString("show$i.last.txt"), plugin.config.getString("show$i.last.subtxt"), plugin.config.getInt("show$i.fadein"), plugin.config.getInt("show$i.title"), plugin.config.getInt("show$i.fadeout"))
                     p.gameMode = GameMode.SURVIVAL
                     shownow[p] = false
                     return
                 }
-                showhelp(p)
+                showhelp(p,i)
             }
-        }.runTaskLater(plugin,plugin.config.getInt("show1.title").toLong())
+        }.runTaskLater(plugin, plugin.config.getInt("show$i.title").toLong())
 
     }
 
-    fun showhelp2(p : Player){
-
-
-        object : BukkitRunnable(){
-            override fun run() {
-
-                plugin.config.getLocation("show2.${plugin.config.getInt("show2.kaisuu") - shownumber[p]!!}.loc")?.let { p.teleport(it) }
-                p.sendTitle(plugin.config.getString("show2.${plugin.config.getInt("show2.kaisuu") - shownumber[p]!!}.txt"), plugin.config.getString("show2.${plugin.config.getInt("show2.kaisuu") - shownumber[p]!!}.subtxt"), plugin.config.getInt("show2.fadein"), plugin.config.getInt("show2.title"), plugin.config.getInt("show2.fadeout"))
-                shownumber[p] = shownumber[p]?.minus(1)!!
-                if (shownumber[p] == -1 || shownow[p] == false){
-                    plugin.config.getLocation("show2.last.loc")?.let { p.teleport(it) }
-                    p.sendTitle(plugin.config.getString("show2.last.txt"), plugin.config.getString("show2.last.subtxt"),plugin.config.getInt("show2.fadein"),plugin.config.getInt("show2.title"),plugin.config.getInt("show2.fadeout"))
-                    p.gameMode = GameMode.SURVIVAL
-                    shownow[p] = false
-                    return
-                }
-                showhelp2(p)
-            }
-        }.runTaskLater(plugin,plugin.config.getInt("show2.title").toLong())
-
-    }
-
-    fun showhelp3(p : Player){
-
-
-        object : BukkitRunnable(){
-            override fun run() {
-
-                plugin.config.getLocation("show3.${plugin.config.getInt("show3.kaisuu") - shownumber[p]!!}.loc")?.let { p.teleport(it) }
-                p.sendTitle(plugin.config.getString("show3.${plugin.config.getInt("show3.kaisuu") - shownumber[p]!!}.txt"), plugin.config.getString("show2.${plugin.config.getInt("show3.kaisuu") - shownumber[p]!!}.subtxt"), plugin.config.getInt("show3.fadein"), plugin.config.getInt("show3.title"), plugin.config.getInt("show3.fadeout"))
-                shownumber[p] = shownumber[p]?.minus(1)!!
-                if (shownumber[p] == -1 || shownow[p] == false){
-                    plugin.config.getLocation("show3.last.loc")?.let { p.teleport(it) }
-                    p.sendTitle(plugin.config.getString("show3.last.txt"), plugin.config.getString("show3.last.subtxt"),plugin.config.getInt("show3.fadein"),plugin.config.getInt("show3.title"),plugin.config.getInt("show3.fadeout"))
-                    p.gameMode = GameMode.SURVIVAL
-                    shownow[p] = false
-                    return
-                }
-                showhelp3(p)
-            }
-        }.runTaskLater(plugin,plugin.config.getInt("show3.title").toLong())
-
-    }
 }
